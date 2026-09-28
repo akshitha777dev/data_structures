@@ -1,0 +1,146 @@
+public class DataStructures {
+
+    // ARRAY
+    static void arrayExample() {
+        int[] arr = {10, 20, 30, 40, 50};
+
+        System.out.println("Array:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println("\n");
+    }
+
+    // STACK
+    static class Stack {
+        int[] stack = new int[5];
+        int top = -1;
+
+        void push(int value) {
+            if (top == stack.length - 1) {
+                System.out.println("Stack is full");
+            } else {
+                stack[++top] = value;
+            }
+        }
+
+        void pop() {
+            if (top == -1) {
+                System.out.println("Stack is empty");
+            } else {
+                System.out.println("Popped: " + stack[top--]);
+            }
+        }
+
+        void display() {
+            System.out.println("Stack:");
+            for (int i = top; i >= 0; i--) {
+                System.out.print(stack[i] + " ");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    // QUEUE
+    static class Queue {
+        int[] queue = new int[5];
+        int front = 0;
+        int rear = -1;
+
+        void enqueue(int value) {
+            if (rear == queue.length - 1) {
+                System.out.println("Queue is full");
+            } else {
+                queue[++rear] = value;
+            }
+        }
+
+        void dequeue() {
+            if (front > rear) {
+                System.out.println("Queue is empty");
+            } else {
+                System.out.println("Dequeued: " + queue[front++]);
+            }
+        }
+
+        void display() {
+            System.out.println("Queue:");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(queue[i] + " ");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    // LINKED LIST
+    static class LinkedList {
+        Node head;
+
+        static class Node {
+            int data;
+            Node next;
+
+            Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        void insert(int data) {
+            Node newNode = new Node(data);
+
+            if (head == null) {
+                head = newNode;
+            } else {
+                Node current = head;
+
+                while (current.next != null) {
+                    current = current.next;
+                }
+
+                current.next = newNode;
+            }
+        }
+
+        void display() {
+            System.out.println("Linked List:");
+            Node current = head;
+
+            while (current != null) {
+                System.out.print(current.data + " -> ");
+                current = current.next;
+            }
+
+            System.out.println("NULL");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Array
+        arrayExample();
+
+        // Stack
+        Stack stack = new Stack();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.display();
+        stack.pop();
+
+        // Queue
+        Queue queue = new Queue();
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.display();
+        queue.dequeue();
+
+        // Linked List
+        LinkedList list = new LinkedList();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.display();
+    }
+}
